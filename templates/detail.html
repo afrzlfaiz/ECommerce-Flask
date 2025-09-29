@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% set title = "Detail Produk · ShopEasy" %}
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  <div>
+    <!-- Simple carousel -->
+    <div id="carousel" class="relative rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+      <div id="carousel-track" class="whitespace-nowrap transition-transform duration-300">
+        <!-- images inserted by JS -->
+      </div>
+      <button id="carousel-prev" class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-slate-900/80">&#10094;</button>
+      <button id="carousel-next" class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-slate-900/80">&#10095;</button>
+    </div>
+    <div id="carousel-dots" class="flex gap-2 mt-3"></div>
+  </div>
+  <div>
+    <h1 id="p-name" class="text-2xl font-semibold tracking-tight"></h1>
+    <div class="mt-2 flex items-center gap-3">
+      <div id="p-price" class="text-2xl font-bold text-brand"></div>
+      <span id="p-discount" class="px-2 py-1 text-xs rounded-lg bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 hidden"></span>
+    </div>
+    <div class="mt-1 text-sm text-slate-500 dark:text-slate-400" id="p-meta"></div>
+    <div class="mt-6 flex gap-3">
+      <button id="btn-add-cart" class="px-4 py-2 rounded-xl bg-brand text-white hover:bg-blue-600">Tambah ke Keranjang</button>
+      <a href="{{ url_for('main.products') }}" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Kembali</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% set title = "Produk · ShopEasy" %}
+{% block content %}
+<!-- Search Bar -->
+<section class="mb-6">
+  <div class="flex">
+    <input type="text" id="search-products" placeholder="Cari produk..." class="flex-1 px-4 py-2 rounded-l-lg border border-slate-300 dark:border-slate-700 bg-transparent">
+    <button id="search-btn" class="px-4 py-2 rounded-r-lg bg-brand text-white hover:bg-blue-600">Cari</button>
+    <button id="clear-search" class="ml-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800">Clear</button>
+  </div>
+</section>
+
+<h1 class="text-2xl font-semibold mb-4">Semua Produk</h1>
+<section id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+  <!-- Rendered by JS -->
+</section>
+<div class="mt-6 flex items-center justify-center gap-2" id="pagination">
+  <button id="prev-page" class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-50">Prev</button>
+  <span id="page-indicator" class="text-sm"></span>
+  <button id="next-page" class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 disabled:opacity-50">Next</button>
+</div>
+{% endblock %}

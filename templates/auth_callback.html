@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% set title = "Mengautentikasi..." %}
+{% block content %}
+<div class="max-w-md mx-auto text-center py-16">
+  <h1 class="text-2xl font-semibold mb-2">Mengautentikasi…</h1>
+  <p class="text-slate-500">Sebentar ya, kamu akan diarahkan kembali.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  (async () => {
+    try {
+      // For PKCE flow, Supabase might have already completed the exchange and put the token in the fragment
+      // Extract the access_token from the URL fragment (if available)
+      let accessToken = null;
+      if (window.location.hash) {
+        // Parse the fragment which contains access_token, expires_in, etc.
+        const fragmentParams = new URLSearchParams(window.location.hash.substring(1)); // Remove the '#'
+        accessToken = fragmentParams.get('access_token');
+      }
+      
+      // Check if we have an access token from the fragment
+      if (!accessToken) {
+        // Also check for code parameter in search (legacy/alternative flow)
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const errorParam = urlParams.get('error');
+        
+        if (errorParam) {
+          throw new Error(`OAuth error: ${errorParam}`);
+        }
+        
+        if (!code) {
+          throw new Error('No authorization code or access token received from Google OAuth');
+        }
+        
+        const SUPABASE_URL = "{{ config['SUPABASE_URL'] }}";
+        const SUPABASE_ANON_KEY = "{{ config['SUPABASE_ANON_KEY'] }}";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Tukar authorization code (PKCE) -> session Supabase
+        const { data, error } = await supabase.auth.exchangeCodeForSession(window.location.href);
+        if (error) throw error;
+
+        accessToken = data?.session?.access_token;
+      }
+      
+      if (!accessToken) {
+        throw new Error('No access_token from Supabase');
+      }
+
+      // Sinkronkan ke backend agar RLS bekerja via attach_user_token()
+      const res = await fetch('/api/auth/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ access_token: accessToken })
+      });
+      
+      if (!res.ok) throw new Error(await res.text());
+
+      // Kembali ke halaman utama
+      window.location.replace('/');
+    } catch (err) {
+      console.error('Full error details:', err);
+      alert('Gagal menyelesaikan login Google: ' + (err.message || 'Unknown error'));
+      window.location.replace('/login');
+    }
+  })();
+</script>
+{% endblock %}

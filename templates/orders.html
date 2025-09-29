@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% set title = "Orders · ShopEasy" %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-4">Riwayat Pesanan</h1>
+<!-- Search Bar -->
+<div class="mb-4 flex">
+  <input type="text" id="search-orders" placeholder="Cari order ID..." class="flex-1 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent">
+  <button id="search-btn" class="ml-2 px-4 py-2 rounded-lg bg-brand text-white hover:bg-blue-600">Cari</button>
+  <button id="clear-search" class="ml-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800">Clear</button>
+</div>
+
+<div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+<table class="min-w-full text-sm">
+  <thead class="bg-slate-50 dark:bg-slate-800/50">
+    <tr>
+      <th class="px-4 py-3 text-left">Order ID</th>
+      <th class="px-4 py-3 text-left">Tanggal</th>
+      <th class="px-4 py-3 text-left">Total</th>
+      <th class="px-4 py-3 text-left">Status</th>
+      <th class="px-4 py-3 text-center">Aksi</th>
+    </tr>
+  </thead>
+  <tbody id="orders-body"></tbody>
+</table>
+</div>
+{% endblock %}

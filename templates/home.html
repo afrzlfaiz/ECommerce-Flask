@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% set title = "Home · ShopEasy" %}
+{% block content %}
+<!-- Search Bar -->
+<section class="mb-6">
+  <div class="flex">
+    <input type="text" id="search-products" placeholder="Cari produk..." class="flex-1 px-4 py-2 rounded-l-lg border border-slate-300 dark:border-slate-700 bg-transparent">
+    <button id="search-btn" class="px-4 py-2 rounded-r-lg bg-brand text-white hover:bg-blue-600">Cari</button>
+    <button id="clear-search" class="ml-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800">Clear</button>
+  </div>
+</section>
+
+<!-- Brand Banner Section -->
+<section class="mb-8">
+  <div class="rounded-2xl bg-gradient-to-r from-brand/10 via-brand/5 to-transparent dark:from-brand/20 dark:via-brand/10 p-8">
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-center mb-6">Brand Pilihan</h1>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="NIKE">
+        <img src="{{ url_for('static', filename='images/brands/nike.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Nike" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Nike</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="adidas">
+        <img src="{{ url_for('static', filename='images/brands/adidas.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Adidas" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Adidas</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="PUMA">
+        <img src="{{ url_for('static', filename='images/brands/puma.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Puma" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Puma</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="UNIQLO">
+        <img src="{{ url_for('static', filename='images/brands/uniqlo.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Uniqlo" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Uniqlo</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="H&M">
+        <img src="{{ url_for('static', filename='images/brands/hm.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="H&M" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">H&M</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="Levi's">
+        <img src="{{ url_for('static', filename='images/brands/levis.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Levi's" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Levi's</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="Erigo">
+        <img src="{{ url_for('static', filename='images/brands/erigo.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Erigo" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Erigo</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="3SECOND">
+        <img src="{{ url_for('static', filename='images/brands/3second.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="3Second" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">3Second</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="Brodo">
+        <img src="{{ url_for('static', filename='images/brands/brodo.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Brodo" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Brodo</span>
+      </div>
+      <div class="brand-card flex flex-col items-center p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer" data-brand="Eiger">
+        <img src="{{ url_for('static', filename='images/brands/eiger.svg') }}" onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/brands/placeholder.svg') }}';" alt="Eiger" class="w-16 h-16 object-contain">
+        <span class="mt-2 text-sm font-medium">Eiger</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-6 flex items-center justify-between">
+  <h2 class="text-xl font-semibold">Produk Pilihan</h2>
+  <div class="flex items-center gap-3">
+    <label class="text-sm text-slate-600 dark:text-slate-300">Urutkan</label>
+    <select id="sort-select" class="text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-2 py-1">
+      <option value="bestseller">Terlaris</option>
+      <option value="rating_desc">Rating Tertinggi</option>
+      <option value="price_asc">Harga Termurah</option>
+      <option value="price_desc">Harga Tertinggi</option>
+    </select>
+  </div>
+</section>
+
+<section id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+  <!-- Rendered by JS -->
+</section>
+
+<section class="mt-6 flex justify-center">
+  <button id="load-more" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800">Muat Lebih Banyak</button>
+</section>
+{% endblock %}
