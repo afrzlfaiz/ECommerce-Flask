@@ -1,5 +1,6 @@
 # ShopEasy - E-commerce Application
 
+link = https://ecommerce-flask-ewnu.onrender.com
 Aplikasi e-commerce sederhana menggunakan Flask, Supabase, dan Xendit sebagai payment gateway. Aplikasi ini mengikuti alur pembelian profesional seperti Tokopedia/Shopee: checkout → order pending → bayar → webhook → update status paid.
 
 ## Fitur Utama
